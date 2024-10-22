@@ -15,19 +15,20 @@ public class ThrusterActivate : MonoBehaviour
     public GameObject rightController;  
     public float moveSpeed = 1.0f; 
     private bool isThrusting = false;
-    
 
 
-    private void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Left_Hand")
+        
+        if (other.gameObject.tag == "Left_Hand")
         {
             leftHandGrab = true;
         }
     }
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Left_Hand")
+        if (other.gameObject.tag == "Left_Hand")
         {
             leftHandGrab = false;
         }
