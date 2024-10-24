@@ -12,20 +12,22 @@ public class ThrusterActivate : MonoBehaviour
     private bool leftHandGrab;
 
     public InputActionReference trigger;
-    public GameObject rightController;  
-    public float moveSpeed = 1.0f; 
+    public GameObject rightController;
+    public float moveSpeed = 1.0f;
     private bool isThrusting = false;
 
-
+    private Vector3 currentVelocity = Vector3.zero;
+    public float dragCoefficient = 0.8f; 
 
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.gameObject.tag == "Left_Hand")
         {
+            Debug.Log("Left hand touching thruster");
             leftHandGrab = true;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Left_Hand")
@@ -33,6 +35,7 @@ public class ThrusterActivate : MonoBehaviour
             leftHandGrab = false;
         }
     }
+
     void Start()
     {
         trigger.action.performed += StartThrust;
@@ -41,19 +44,28 @@ public class ThrusterActivate : MonoBehaviour
 
     void Update()
     {
-        if (isThrusting && leftHandGrab == true)
+        if (isThrusting && leftHandGrab)
         {
             Vector3 forwardDirection = rightController.transform.forward;
+            currentVelocity += forwardDirection * moveSpeed * Time.deltaTime; 
+        }
 
-            Vector3 newPosition = playerOrigin.transform.position + forwardDirection * moveSpeed * Time.deltaTime;
+        if (!isThrusting)
+        {
+            currentVelocity -= currentVelocity * dragCoefficient * Time.deltaTime; 
+        }
 
-            playerOrigin.transform.position = newPosition;
+        playerOrigin.transform.position += currentVelocity * Time.deltaTime;
+
+        if (currentVelocity.magnitude < 0.01f) 
+        {
+            currentVelocity = Vector3.zero;
         }
     }
 
     void StartThrust(InputAction.CallbackContext context)
     {
-        isThrusting = true; 
+        isThrusting = true;
     }
 
     void StopThrust(InputAction.CallbackContext context)
