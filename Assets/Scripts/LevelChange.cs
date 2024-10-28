@@ -6,11 +6,24 @@ using UnityEngine.SceneManagement;
 public class LevelChange : MonoBehaviour
 {
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("Scenes/DoubleThrustScene");
+            string currentSceneName = SceneManager.GetActiveScene().name;
+
+            if(currentSceneName == "MainScene")
+            {
+                SceneManager.LoadScene("Scenes/DoubleThrustScene");
+            }
+            else if(currentSceneName == "DoubleThrustScene")
+            {
+                SceneManager.LoadScene("Scenes/SpeargunScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("Scenes/MainScene");
+            }
         }
         
     }

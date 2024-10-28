@@ -134,7 +134,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &-2011697610774757546
 MonoBehaviour:
@@ -148,6 +148,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd4c004df8feb44a9f7f6dffce43082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOrigin: {fileID: 0}
-  reelButtonPress: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  moveSpeed: 5
