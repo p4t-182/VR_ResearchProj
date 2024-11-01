@@ -16,6 +16,7 @@ public class DualThrusterActivate : MonoBehaviour
     private GameObject activeController;
     public float moveSpeed = 1.0f;
     private bool isThrusting = false;
+    //private ParticleSystem bubbleSystem;
 
     private Vector3 currentVelocity = Vector3.zero;
     public float dragCoefficient = 0.8f;
@@ -32,12 +33,19 @@ public class DualThrusterActivate : MonoBehaviour
     {
         if (isThrusting && activeController != null)
         {
+            //bubbleSystem.Play();
+            //ParticleSystem.EmissionModule emission = bubbleSystem.emission;
+            //emission.enabled = true;
             Vector3 forwardDirection = activeController.transform.forward * -1;
             currentVelocity += forwardDirection * moveSpeed * Time.deltaTime;
         }
 
         if (!isThrusting)
         {
+
+            //ParticleSystem.EmissionModule emission = bubbleSystem.emission;
+            //emission.enabled = false;
+            //bubbleSystem.Stop();
             currentVelocity -= currentVelocity * dragCoefficient * Time.deltaTime;
         }
 

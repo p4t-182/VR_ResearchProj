@@ -10,6 +10,7 @@ public class ThrusterActivate : MonoBehaviour
     private GameObject playerOrigin;
 
     private bool leftHandGrab;
+    private ParticleSystem bubbleSystem;
 
     public InputActionReference trigger;
     public GameObject rightController;
@@ -38,6 +39,7 @@ public class ThrusterActivate : MonoBehaviour
 
     void Start()
     {
+        bubbleSystem = GetComponent<ParticleSystem>();
         trigger.action.performed += StartThrust;
         trigger.action.canceled += StopThrust;
     }
@@ -46,12 +48,19 @@ public class ThrusterActivate : MonoBehaviour
     {
         if (isThrusting && leftHandGrab)
         {
+            bubbleSystem.Play();
+            ParticleSystem.EmissionModule emission = bubbleSystem.emission;
+            emission.enabled = true;
             Vector3 forwardDirection = rightController.transform.forward;
             currentVelocity += forwardDirection * moveSpeed * Time.deltaTime; 
         }
 
         if (!isThrusting)
         {
+            ParticleSystem.EmissionModule emission = bubbleSystem.emission;
+            emission.enabled = false;
+            bubbleSystem.Stop();
+            
             currentVelocity -= currentVelocity * dragCoefficient * Time.deltaTime; 
         }
 

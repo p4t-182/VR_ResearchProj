@@ -15,3 +15,17 @@ The interaction for this project will be swimming, and it will focus on differen
 ## Storyboards
 ![IMG_2710](https://github.com/user-attachments/assets/992ac463-bcd7-4f47-8714-4141cbf91628)
 ![IMG_2712](https://github.com/user-attachments/assets/aa43fa0d-2780-4621-9461-166cc492407f)
+
+## User Questions
+
+### Pre-Test
+
+1. Have you ever used any kind of VR swimming interaction before?
+2. How would you rate your experience level with VR technology in general?
+3. What are your expectations for how one might move around in an underwater environment?
+
+### Post-Test
+
+1. Which interaction was the most intuitive to you?
+2. Which interaction did you find the least intuitive?
+3. Are there any modifications that might improve the overall experience with this interaction?

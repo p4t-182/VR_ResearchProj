@@ -8,7 +8,7 @@ public class LevelChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "LeftHandThruster" || other.gameObject.tag == "RightHandThruster")
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
 
